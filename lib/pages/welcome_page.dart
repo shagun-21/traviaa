@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:traviaa/misc/colors.dart';
+import 'package:traviaa/widgets/app_large_text.dart';
+import 'package:traviaa/widgets/app_text.dart';
+import 'package:traviaa/widgets/responsive_button.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -36,11 +40,33 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: Row(
                     children: [
                       Column(
-                        children: [],
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //welcome page texts 
+                          AppLargeText(text: "Trips"),
+                          AppText(text: "Mountains",size: 30,),
+                          SizedBox(height: 20,),
+                          Container(
+                        
+                            width: 250,
+                            child: AppText(text: "Mountains give you incredible sense of freedom along with increasing your endurance",
+                            color: AppColors.textColor2,
+                            size: 14,),
+                          ),
+                          SizedBox(height: 40,),
+                          ResponsiveButton(width: 120,)
+
+                      
+                        ],
                       )
                     ],
-                  )),
+                  ),
+                  ),
+                  
+                  
             );
+        
+
           }),
     );
   }
