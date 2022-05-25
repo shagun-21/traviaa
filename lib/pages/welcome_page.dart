@@ -36,37 +36,60 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               child: Container(
-                  margin: EdgeInsets.only(top: 150, left: 20, right: 20),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          //welcome page texts 
-                          AppLargeText(text: "Trips"),
-                          AppText(text: "Mountains",size: 30,),
-                          SizedBox(height: 20,),
-                          Container(
-                        
-                            width: 250,
-                            child: AppText(text: "Mountains give you incredible sense of freedom along with increasing your endurance",
+                margin: EdgeInsets.only(top: 150, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //welcome page texts
+                        AppLargeText(text: "Trips"),
+                        AppText(
+                          text: "Mountains",
+                          size: 30,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 250,
+                          child: AppText(
+                            text:
+                                "Mountains give you incredible sense of freedom along with increasing your endurance",
                             color: AppColors.textColor2,
-                            size: 14,),
+                            size: 14,
                           ),
-                          SizedBox(height: 40,),
-                          ResponsiveButton(width: 120,)
-
-                      
-                        ],
-                      )
-                    ],
-                  ),
-                  ),
-                  
-                  
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        ResponsiveButton(
+                          width: 120,
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: List.generate(
+                        3,
+                        (indexDots) {
+                          return Container(
+                            margin: EdgeInsets.only(bottom: 2),
+                            width: 8,
+                            height: index == indexDots ? 25 : 8,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: index == indexDots
+                                    ? AppColors.mainColor
+                                    : AppColors.mainColor.withOpacity(.3)),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
             );
-        
-
           }),
     );
   }
