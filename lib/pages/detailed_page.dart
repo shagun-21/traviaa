@@ -3,6 +3,7 @@ import 'package:traviaa/misc/colors.dart';
 import 'package:traviaa/widgets/app_buttons.dart';
 import 'package:traviaa/widgets/app_large_text.dart';
 import 'package:traviaa/widgets/app_text.dart';
+import 'package:traviaa/widgets/responsive_button.dart';
 
 class DetailedPage extends StatefulWidget {
   const DetailedPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class DetailedPage extends StatefulWidget {
 
 class _DetailedPageState extends State<DetailedPage> {
   int gottenStars = 4;
+  int selectedIndex=-1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,22 +143,49 @@ class _DetailedPageState extends State<DetailedPage> {
                     ),
                     Wrap(
                       children: List.generate(5, (index) {
-                        return Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          child: AppButtons(
-                            size: 50,
-                            color: Colors.black,
-                            backgroundColor: AppColors.buttonBackground,
-                            borderColor: AppColors.buttonBackground,
-                            text: (index + 1).toString(),
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex=index;
+                            });
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            child: AppButtons(
+                              size: 50,
+                              color: selectedIndex==index?Colors.white:Colors.black,
+                              backgroundColor: selectedIndex==index?Colors.black:AppColors.buttonBackground,
+                              borderColor: selectedIndex==index?Colors.black:AppColors.buttonBackground,
+                              text: (index + 1).toString(),
+                            ),
                           ),
                         );
                       }),
-                    )
+                    ),
+                    SizedBox(height: 20,),
+                    AppLargeText(text: "Description",color: Colors.black.withOpacity(0.8),size: 20,),
+                    SizedBox(height: 10,),
+                    AppText(text: "You must go for a travel. Travelling gives a refresh to your life. So go out for a travel and get yourself close to the nature",
+                    color: AppColors.mainTextColor,)
                   ],
                 )),
           ),
-        ],
+       Positioned(
+         bottom: 20,
+         left: 20,
+         right: 20,
+         child:Row(
+           children: [
+             AppButtons(size: 60, color: AppColors.textColor1, backgroundColor: Colors.white, borderColor: AppColors.textColor1
+             ,isIcon: true,
+             icon: Icons.favorite_border,),
+             SizedBox(width: 20,),
+             ResponsiveButton(
+                  isResponsive: true,
+             )
+           ],
+         ) 
+       ) ],
       ),
     ));
   }
