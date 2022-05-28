@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traviaa/pages/detailed_page.dart';
 import 'package:traviaa/pages/navpages/main_page.dart';
 import 'package:traviaa/pages/welcome_page.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: DetailedPage(),
     );
   }
 }
