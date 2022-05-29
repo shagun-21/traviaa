@@ -14,7 +14,7 @@ class DetailedPage extends StatefulWidget {
 
 class _DetailedPageState extends State<DetailedPage> {
   int gottenStars = 4;
-  int selectedIndex=-1;
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +53,7 @@ class _DetailedPageState extends State<DetailedPage> {
             ),
           ),
           Positioned(
-            top: 300,
+            top: 200,
             child: Container(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
                 width: MediaQuery.of(context).size.width,
@@ -146,46 +146,70 @@ class _DetailedPageState extends State<DetailedPage> {
                         return InkWell(
                           onTap: () {
                             setState(() {
-                              selectedIndex=index;
+                              selectedIndex = index;
                             });
                           },
                           child: Container(
                             margin: const EdgeInsets.only(right: 10),
                             child: AppButtons(
                               size: 50,
-                              color: selectedIndex==index?Colors.white:Colors.black,
-                              backgroundColor: selectedIndex==index?Colors.black:AppColors.buttonBackground,
-                              borderColor: selectedIndex==index?Colors.black:AppColors.buttonBackground,
+                              color: selectedIndex == index
+                                  ? Colors.white
+                                  : Colors.black,
+                              backgroundColor: selectedIndex == index
+                                  ? Colors.black
+                                  : AppColors.buttonBackground,
+                              borderColor: selectedIndex == index
+                                  ? Colors.black
+                                  : AppColors.buttonBackground,
                               text: (index + 1).toString(),
                             ),
                           ),
                         );
                       }),
                     ),
-                    SizedBox(height: 20,),
-                    AppLargeText(text: "Description",color: Colors.black.withOpacity(0.8),size: 20,),
-                    SizedBox(height: 10,),
-                    AppText(text: "You must go for a travel. Travelling gives a refresh to your life. So go out for a travel and get yourself close to the nature",
-                    color: AppColors.mainTextColor,)
+                    SizedBox(
+                      height: 20,
+                    ),
+                    AppLargeText(
+                      text: "Description",
+                      color: Colors.black.withOpacity(0.8),
+                      size: 20,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    AppText(
+                      text:
+                          "You must go for a travel. Travelling gives a refresh to your life. So go out for a travel and get yourself close to the nature",
+                      color: AppColors.mainTextColor,
+                    )
                   ],
                 )),
           ),
-       Positioned(
-         bottom: 20,
-         left: 20,
-         right: 20,
-         child:Row(
-           children: [
-             AppButtons(size: 60, color: AppColors.textColor1, backgroundColor: Colors.white, borderColor: AppColors.textColor1
-             ,isIcon: true,
-             icon: Icons.favorite_border,),
-             SizedBox(width: 20,),
-             ResponsiveButton(
-                  isResponsive: true,
-             )
-           ],
-         ) 
-       ) ],
+          Positioned(
+              bottom: 20,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  AppButtons(
+                    size: 60,
+                    color: AppColors.textColor1,
+                    backgroundColor: Colors.white,
+                    borderColor: AppColors.textColor1,
+                    isIcon: true,
+                    icon: Icons.favorite_border,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ResponsiveButton(
+                    isResponsive: true,
+                  )
+                ],
+              ))
+        ],
       ),
     ));
   }

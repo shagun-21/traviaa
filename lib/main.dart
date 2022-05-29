@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traviaa/cubit/app_cubit_logics.dart';
+import 'package:traviaa/cubit/app_cubits.dart';
 import 'package:traviaa/pages/detailed_page.dart';
 import 'package:traviaa/pages/navpages/main_page.dart';
 import 'package:traviaa/pages/welcome_page.dart';
@@ -19,7 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DetailedPage(),
+      home: BlocProvider<AppCubits>(
+        create: (context) => AppCubits(),
+        child: AppCubitLogics(),
+      ),
     );
   }
 }
