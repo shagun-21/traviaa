@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traviaa/cubit/app_cubit_states.dart';
 import 'package:traviaa/misc/colors.dart';
 import 'package:traviaa/widgets/app_large_text.dart';
 import 'package:traviaa/widgets/app_text.dart';
+
+import '../cubit/app_cubits.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +27,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       //main column starts from here
 
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      body: BlocBuilder<AppCubits,CubitStates>(builder: (context,state){
+
+        if(state is LoadedState){
+          var info=state.places;
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
           margin: EdgeInsets.only(right: 20),
           padding: const EdgeInsets.only(top: 40, left: 20),
@@ -87,17 +95,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: [
               ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
+                itemCount: info.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: const EdgeInsets.only(right: 15, top: 10),
-                    width: 200,
-                    height: 300,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage("lib/img/mountain.jpeg"),
-                            fit: BoxFit.cover)),
+                  return GestureDetector(
+                    onTap:(){
+                        BlocProvider.of<AppCubits>(context).detailPage(info[index]);
+                    },
+                    child: Container(
+                      
+                      margin: const EdgeInsets.only(right: 15, top: 10),
+                      width: 200,
+                      height: 300,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                              image: NetworkImage("http://mark.bslmeiyu.com/uploads/"+info[index].img),
+                              fit: BoxFit.cover)),
+                    ),
                   );
                 },
               ),
@@ -107,7 +121,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 30,
         ),
         Container(
           margin: const EdgeInsets.only(
@@ -171,7 +185,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 }),
           ),
         ),
-      ]),
+      ]);
+        }else{
+              return Container();
+        }
+        
+      })
     );
   }
 }
